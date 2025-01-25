@@ -105,7 +105,7 @@ export default function Gallery() {
                   variant="ghost"
                   size="icon"
                   className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm hover:bg-background/90"
-                  onClick={() => document.querySelector('button[aria-label="Close"]')?.click()}
+                  // onClick={() => document.querySelector('button[aria-label="Close"]')?.click()}
                 >
                   <X className="h-6 w-6" />
                 </Button>

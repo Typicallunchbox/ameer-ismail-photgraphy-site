@@ -48,13 +48,34 @@ export default function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  // function onSubmit(values: z.infer<typeof formSchema>) {
+  //   fetch('/', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  //     body: encode({ 'form-name': 'contact-form', ...formSchema }),
+  //   })
+  //     .then(() => alert('Success!'))
+  //     .catch((error) => alert(error));  }
+  type FormData = {
+    'form-name': string; // The name of the form
+    [key: string]: string; // Any additional form fields (key-value pairs)
+  };
+  const onSubmit = async (values: FormData) => {    
+    const body = new URLSearchParams({ 'form-name': 'getInTouchForm', ...values }).toString();  
+    fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      })
+        .then(() => alert('Success!'))
+        .catch((error) => alert(error));
+  
+      // e.preventDefault();
+    };
 
   return (
     <Form {...form}>
-      <form method="POST" name="getInTouchForm" data-netlify="true" className="space-y-6">
+      <form  name="getInTouchForm" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="fullName"

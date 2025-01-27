@@ -54,7 +54,7 @@ export default function ContactForm() {
 
   return (
     <Form {...form}>
-      <form name="getInTouchForm" data-netlify="true" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form method="POST" name="getInTouchForm" data-netlify="true" className="space-y-6">
         <FormField
           control={form.control}
           name="fullName"

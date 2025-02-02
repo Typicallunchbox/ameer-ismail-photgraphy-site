@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
 import {
@@ -17,40 +17,33 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-const allImages = {
-  'Fashion Catalogue': [
-    { url: "https://images.unsplash.com/photo-1509631179647-0177331693ae", alt: "Fashion photo 1" },
-    { url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f", alt: "Fashion photo 2" },
-    { url: "https://images.unsplash.com/photo-1496747611176-843222e1e57c", alt: "Fashion photo 3" },
-    { url: "https://images.unsplash.com/photo-1469334031218-e382a71b716b", alt: "Fashion photo 4" },
-    { url: "https://images.unsplash.com/photo-1495385794356-15371f348c31", alt: "Fashion photo 5" },
-  ],
-  'Wedding Catalogue': [
-    { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", alt: "Wedding photo 1" },
-    { url: "https://images.unsplash.com/photo-1583939411023-14783179e581", alt: "Wedding photo 2" },
-    { url: "https://images.unsplash.com/photo-1606800052052-a08af7148866", alt: "Wedding photo 3" },
-    { url: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc", alt: "Wedding photo 4" },
-    { url: "https://images.unsplash.com/photo-1519741497674-611481863552", alt: "Wedding photo 5" },
-  ],
-  'Recently Captured Memories': [
-    { url: "https://images.unsplash.com/photo-1623091410901-00e2d268901f", alt: "Recent photo 1" },
-    { url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a", alt: "Recent photo 2" },
-    { url: "https://images.unsplash.com/photo-1519741497674-611481863552", alt: "Recent photo 3" },
-    { url: "https://images.unsplash.com/photo-1537633552985-df8429e8048b", alt: "Recent photo 4" },
-    { url: "https://images.unsplash.com/photo-1591604466107-ec97de577aff", alt: "Recent photo 5" },
-  ],
-};
 
 export default function Gallery() {
-  const [category, setCategory] = useState<string>("All");
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  
-  const getFilteredImages = () => {
-    if (category === "All") {
-      return Object.values(allImages).flat();
+  const [category, setCategory] = useState<string>("all");
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!category) return;
+
+    async function fetchImages() {
+        setLoading(true);
+        try {
+            const response = await fetch(`/api/cloudinary?folder=${category}`);
+            const data = await response.json();
+            setImages(data || []);
+
+            console.log('data:', data)
+        } catch (error) {
+            console.error("Error fetching images:", error);
+        } finally {
+            setLoading(false);
+        }
     }
-    return allImages[category as keyof typeof allImages] || [];
-  };
+
+    fetchImages();
+}, [category]);
+  if (loading) return <p>Loading images...</p>;
 
   return (
     <div className="min-h-screen pt-20 px-6 sm:px-8 md:px-12">
@@ -65,24 +58,26 @@ export default function Gallery() {
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="All">All</SelectItem>
-            <SelectItem value="Fashion Catalogue">Fashion Catalogue</SelectItem>
-            <SelectItem value="Wedding Catalogue">Wedding Catalogue</SelectItem>
-            <SelectItem value="Recently Captured Memories">Recently Captured Memories</SelectItem>
+            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="fashion">Fashion Catalogue</SelectItem>
+            <SelectItem value="wedding">Wedding Catalogue</SelectItem>
+            <SelectItem value="recent">Recently Captured Memories</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       <div className="columns-2 sm:columns-2 lg:columns-3 gap-4">
-        {getFilteredImages().map((image, index) => (
+        {images.map((image, index) => (
           <Dialog key={index}>
             <DialogTrigger asChild>
               <div className="relative mb-4 break-inside-avoid">
-                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg cursor-pointer">
+                <div className="relative w-full overflow-hidden rounded-md cursor-pointer">
                   <Image
-                    src={image.url}
-                    alt={image.alt}
-                    fill
+                    src={image.secure_url}
+                    alt={image.display_name}
+                    width={0} 
+                    height={0}
+                    style={{ width: "100%", height: "auto" }} 
                     className="object-cover transition-transform hover:scale-105"
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     loading="lazy"

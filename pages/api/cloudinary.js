@@ -8,10 +8,6 @@ export default async function handler(req, res) {
     const apiKey = process.env.CLOUDINARY_API_KEY;
     const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
-    console.log('cloudName:', cloudName);
-    console.log('apiKey:', apiKey);
-    console.log('apiSecret:', apiSecret);
-
     if (!cloudName || !apiKey || !apiSecret || !folder) {
         return res.status(500).json({ error: "Missing environment variables" });
     }

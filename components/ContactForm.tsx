@@ -60,22 +60,22 @@ export default function ContactForm() {
     'form-name': string; // The name of the form
     [key: string]: string; // Any additional form fields (key-value pairs)
   };
-  const onSubmit = async (values: FormData) => {    
-    const body = new URLSearchParams({ 'form-name': 'getInTouchForm', ...values }).toString();  
-    fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
-      })
-        .then(() => alert('Success!'))
-        .catch((error) => alert(error));
+  // const onSubmit = async (values: FormData) => {    
+  //   const body = new URLSearchParams({ 'form-name': 'getInTouchForm', ...values }).toString();  
+  //   fetch('/', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  //       body: body
+  //     })
+  //       .then(() => alert('Success!'))
+  //       .catch((error) => alert(error));
   
-      // e.preventDefault();
-    };
+  //     // e.preventDefault();
+  //   };
 
   return (
     <Form {...form}>
-      <form  name="getInTouchForm" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form  name="getInTouchForm" className="space-y-6">
         <FormField
           control={form.control}
           name="fullName"

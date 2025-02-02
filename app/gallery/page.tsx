@@ -67,7 +67,7 @@ export default function Gallery() {
       </div>
 
       <div className="columns-2 sm:columns-2 lg:columns-3 gap-4">
-        {images.map((image, index) => (
+        {images.map((image:any, index) => (
           <Dialog key={index}>
             <DialogTrigger asChild>
               <div className="relative mb-4 break-inside-avoid">

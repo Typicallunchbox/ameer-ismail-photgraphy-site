@@ -1,7 +1,11 @@
+"use client"
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ImageCarousel from '@/components/ImageCarousel';
-import ContactForm from '@/components/ContactForm';
+// import ContactForm from '@/components/ContactForm';
+import { useState } from "react";
+
 import Footer from '@/components/Footer';
 
 // Sample image data - replace with your actual images
@@ -26,7 +30,89 @@ const fashionImages = [
   { url: "https://images.unsplash.com/photo-1496747611176-843222e1e57c", alt: "Fashion photo 3" },
 ];
 
+// components/ContactForm.js
+
+function ContactForm() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formDataEncoded = new URLSearchParams(formData).toString();
+
+    const res = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `form-name=contact&${formDataEncoded}`,
+    });
+
+    if (res.ok) {
+      setStatus("Success! Your message has been sent.");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      setStatus("Oops! Something went wrong.");
+    }
+  };
+
+  return (
+    <form 
+      onSubmit={handleSubmit} 
+      name="contact" 
+      method="POST" 
+      data-netlify="true"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <label>
+        Name:
+        <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+      </label>
+      <label>
+        Email:
+        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+      </label>
+      <label>
+        Message:
+        <textarea name="message" value={formData.message} onChange={handleChange} required />
+      </label>
+      <button type="submit">Send</button>
+      {status && <p>{status}</p>}
+    </form>
+  );
+}
+
+
 export default function Home() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e:any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+
+    const formDataEncoded = new URLSearchParams(formData).toString();
+
+    const res = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `form-name=contact&${formDataEncoded}`,
+    });
+
+    if (res.ok) {
+      setStatus("Success! Your message has been sent.");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      setStatus("Oops! Something went wrong.");
+    }
+  };
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -86,7 +172,29 @@ export default function Home() {
           </div>
           
           <div className="bg-white p-8 rounded-lg shadow-sm text-left">
-            <ContactForm />
+            {/* <ContactForm /> */}
+            <form 
+              onSubmit={handleSubmit} 
+              name="contact" 
+              method="POST" 
+              data-netlify="true"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <label>
+                Name:
+                <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+              </label>
+              <label>
+                Email:
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+              </label>
+              <label>
+                Message:
+                <textarea name="message" value={formData.message} onChange={handleChange} required />
+              </label>
+              <button type="submit">Send</button>
+              {status && <p>{status}</p>}
+            </form>
           </div>
         </div>
       </section>

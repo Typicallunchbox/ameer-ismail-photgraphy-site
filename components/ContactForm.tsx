@@ -31,7 +31,6 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 
-
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
@@ -41,8 +40,8 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
-    const [status, setStatus] = useState("");
-  
+  const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,21 +52,23 @@ export default function ContactForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-
+    setLoading(true);
+    setStatus("");
+    
     const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
     });
 
-    const result = await response.json();
-
+    const result = await response.json();    
     if (response.ok) {
         setStatus("Email sent successfully!");
+        form.reset();
     } else {
-        setStatus(`Error: ${result.message}`);
+        setStatus(`Error: Something went wrong processing your form, please try again later.`);
     }
+    setLoading(false);
 };
 
   return (
@@ -181,7 +182,9 @@ export default function ContactForm() {
           )}
         />
 
-        <Button type="submit" className="w-full">Submit</Button>
+        <Button disabled={loading} type="submit" className="w-full">Submit<span className={`${loading ? 'loader' : ''} w-6 h-6 ml-4`}></span></Button>
+        
+        <p className={`${status.startsWith('Error') ? 'text-red-500': 'text-emerald-500'} font-bold`}>{status}</p>
       </form>
     </Form>
   );

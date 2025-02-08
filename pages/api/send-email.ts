@@ -6,9 +6,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const { name, email, message } = req.body;
+    const { fullName, email, interest, date, location } = req.body;
 
-    if (!name || !email || !message) {
+    if (!fullName || !email || !interest || !date || !location) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -26,11 +26,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await transporter.sendMail({
             from: `"Contact Form" <${process.env.EMAIL_USER}>`, 
             to: 'info@ameerismailphotography.com',
-            subject: `New Contact Form Submission from ${name}`,
-            text: message,
-            html: `<p><strong>Name:</strong> ${name}</p>
+            subject: `New Contact Form Submission from ${fullName}`,
+            text: "TEST",
+            html: `<p><strong>Name:</strong> ${fullName}</p>
                    <p><strong>Email:</strong> ${email}</p>
-                   <p><strong>Message:</strong> ${message}</p>`,
+                   <p><strong>Interest:</strong> ${interest}</p>
+                   <p><strong>Date:</strong> ${date}</p>
+                   <p><strong>Location:</strong> ${location}</p>`,
             replyTo: email, 
         });
 

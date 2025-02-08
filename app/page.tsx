@@ -1,13 +1,7 @@
-"use client"
-
-
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ImageCarousel from '@/components/ImageCarousel';
-// import ContactForm from '@/components/ContactForm';
-import ContactFormTest from "../components/ContactFormTest";
-import { useState } from "react";
-
+import ContactForm from "../components/ContactForm";
 import Footer from '@/components/Footer';
 
 // Sample image data - replace with your actual images
@@ -34,7 +28,6 @@ const fashionImages = [
 
 
 export default function Home() {
-  const [email, setEmail] = useState("");
 
   return (
     <main className="min-h-screen">
@@ -95,8 +88,7 @@ export default function Home() {
           </div>
           
           <div className="bg-white p-8 rounded-lg shadow-sm text-left">
-            {/* <ContactForm /> */}
-            <ContactFormTest />
+            <ContactForm />
           </div>
         </div>
       </section>

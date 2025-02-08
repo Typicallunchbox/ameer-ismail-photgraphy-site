@@ -29,6 +29,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
+
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -39,6 +41,8 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
+    const [status, setStatus] = useState("");
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,34 +52,27 @@ export default function ContactForm() {
     },
   });
 
-  // function onSubmit(values: z.infer<typeof formSchema>) {
-  //   fetch('/', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  //     body: encode({ 'form-name': 'contact-form', ...formSchema }),
-  //   })
-  //     .then(() => alert('Success!'))
-  //     .catch((error) => alert(error));  }
-  type FormData = {
-    'form-name': string; // The name of the form
-    [key: string]: string; // Any additional form fields (key-value pairs)
-  };
-  // const onSubmit = async (values: FormData) => {    
-  //   const body = new URLSearchParams({ 'form-name': 'getInTouchForm', ...values }).toString();  
-  //   fetch('/', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  //       body: body
-  //     })
-  //       .then(() => alert('Success!'))
-  //       .catch((error) => alert(error));
-  
-  //     // e.preventDefault();
-  //   };
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+
+    const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+        setStatus("Email sent successfully!");
+    } else {
+        setStatus(`Error: ${result.message}`);
+    }
+};
 
   return (
     <Form {...form}>
-      <form  name="getInTouchForm" className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="fullName"
@@ -117,10 +114,10 @@ export default function ContactForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="wedding">Wedding Photography</SelectItem>
-                  <SelectItem value="fashion">Fashion Photography</SelectItem>
-                  <SelectItem value="portrait">Portrait Photography</SelectItem>
-                  <SelectItem value="event">Event Photography</SelectItem>
+                  <SelectItem value="wedding photography">Wedding Photography</SelectItem>
+                  <SelectItem value="fashion photography">Fashion Photography</SelectItem>
+                  <SelectItem value="portrait photography">Portrait Photography</SelectItem>
+                  <SelectItem value="event photography">Event Photography</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ImageCarousel from '@/components/ImageCarousel';
@@ -5,29 +8,64 @@ import ContactForm from "../components/ContactForm";
 import Footer from '@/components/Footer';
 
 // Sample image data - replace with your actual images
-const recentImages = [
-  { url: "https://images.unsplash.com/photo-1623091410901-00e2d268901f", alt: "Recent wedding photo 1" },
-  { url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a", alt: "Recent wedding photo 2" },
-  { url: "https://images.unsplash.com/photo-1519741497674-611481863552", alt: "Recent wedding photo 3" },
-  { url: "https://images.unsplash.com/photo-1623091410901-00e2d268901f", alt: "Recent wedding photo 1" },
-  { url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a", alt: "Recent wedding photo 2" },
-  { url: "https://images.unsplash.com/photo-1519741497674-611481863552", alt: "Recent wedding photo 3" }
-];
+// const recentImages = [
+//   { url: "https://images.unsplash.com/photo-1623091410901-00e2d268901f", alt: "Recent wedding photo 1" },
+//   { url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a", alt: "Recent wedding photo 2" },
+//   { url: "https://images.unsplash.com/photo-1519741497674-611481863552", alt: "Recent wedding photo 3" },
+//   { url: "https://images.unsplash.com/photo-1623091410901-00e2d268901f", alt: "Recent wedding photo 1" },
+//   { url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a", alt: "Recent wedding photo 2" },
+//   { url: "https://images.unsplash.com/photo-1519741497674-611481863552", alt: "Recent wedding photo 3" }
+// ];
 
-const weddingImages = [
-  { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", alt: "Wedding photo 1" },
-  { url: "https://images.unsplash.com/photo-1583939411023-14783179e581", alt: "Wedding photo 2" },
-  { url: "https://images.unsplash.com/photo-1606800052052-a08af7148866", alt: "Wedding photo 3" },
-];
+// const weddingImages = [
+//   { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", alt: "Wedding photo 1" },
+//   { url: "https://images.unsplash.com/photo-1583939411023-14783179e581", alt: "Wedding photo 2" },
+//   { url: "https://images.unsplash.com/photo-1606800052052-a08af7148866", alt: "Wedding photo 3" },
+// ];
 
-const fashionImages = [
-  { url: "https://images.unsplash.com/photo-1509631179647-0177331693ae", alt: "Fashion photo 1" },
-  { url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f", alt: "Fashion photo 2" },
-  { url: "https://images.unsplash.com/photo-1496747611176-843222e1e57c", alt: "Fashion photo 3" },
-];
+// const fashionImages = [
+//   { url: "https://images.unsplash.com/photo-1509631179647-0177331693ae", alt: "Fashion photo 1" },
+//   { url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f", alt: "Fashion photo 2" },
+//   { url: "https://images.unsplash.com/photo-1496747611176-843222e1e57c", alt: "Fashion photo 3" },
+// ];
 
 
 export default function Home() {
+    const [images1, setImages1] = useState([]);
+    const [images2, setImages2] = useState([]);
+    const [images3, setImages3] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+
+
+    useEffect(() => {
+      const fetchImages = async () => {
+        const folders = ["fashion-catalogue", "wedding-catalogue", "recently-captured-memories"];
+      
+        try {
+          const responses = await Promise.all(
+            folders.map((folder) =>
+              fetch(`/api/cloudinary?folder=home/${folder}`).then((res) => res.json())
+            )
+          );
+      
+          const [fashionImages, weddingImages, recentImages] = responses;
+      
+          console.log("Fashion:", fashionImages);
+          console.log("Wedding:", weddingImages);
+          console.log("Recent:", recentImages);
+  
+          setImages1(fashionImages)
+          setImages2(weddingImages)
+          setImages3(recentImages)
+        } catch (error) {
+          console.error("Error fetching images:", error);
+          return { fashionImages: [], weddingImages: [], recentImages: [] };
+        }
+      };
+      fetchImages();
+    }, [])
+    
 
   return (
     <main className="min-h-screen">
@@ -69,9 +107,9 @@ export default function Home() {
 
       {/* Carousel Sections */}
       <section className="py-20 px-6 sm:px-8 md:px-12 max-w-7xl mx-auto space-y-20">
-        <ImageCarousel title="Recently Captured Memories" images={recentImages} />
-        <ImageCarousel title="Wedding Catalogue" images={weddingImages} />
-        <ImageCarousel title="Fashion Catalogue" images={fashionImages} />
+        <ImageCarousel title="Recently Captured Memories" images={images3} />
+        <ImageCarousel title="Wedding Catalogue" images={images2} />
+        <ImageCarousel title="Fashion Catalogue" images={images1} />
       </section>
 
       {/* Contact Section */}

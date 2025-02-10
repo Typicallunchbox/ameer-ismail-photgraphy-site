@@ -22,62 +22,65 @@ export default function Gallery() {
   const [category, setCategory] = useState<string>("all");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const categories = [
+    { label: "All", value: "all" },
+    { label: "Fashion Catalogue", value: "fashion" },
+    { label: "Wedding Catalogue", value: "wedding" },
+    { label: "Recently Captured", value: "recent" },
+  ];
+
 
   useEffect(() => {
     if (!category) return;
 
     async function fetchImages() {
-        setLoading(true);
-        try {
-            const response = await fetch(`/api/cloudinary?folder=${category}`);
-            const data = await response.json();
-            setImages(data || []);
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/cloudinary?folder=${category}`);
+        const data = await response.json();
+        setImages(data || []);
 
-            console.log('data:', data)
-        } catch (error) {
-            console.error("Error fetching images:", error);
-        } finally {
-            setLoading(false);
-        }
+        console.log('data:', data)
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchImages();
-}, [category]);
-  if (loading) return <p>Loading images...</p>;
+  }, [category]);
+  // if (loading) return <p>Loading images...</p>;
 
   return (
-    <div className="min-h-screen pt-20 px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-20 md:pt-40 px-2 sm:px-8 md:px-12 max-w-7xl mx-auto">
       <h1 className="text-4xl font-bold mb-8">Gallery</h1>
-      <div className="mb-8 flex items-center gap-4">
-        <p>Select Catalogue:</p>
-        <Select
-          value={category}
-          onValueChange={setCategory}
-        >
-          <SelectTrigger className="w-full sm:w-[280px]">
-            <SelectValue placeholder="Select category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="fashion">Fashion Catalogue</SelectItem>
-            <SelectItem value="wedding">Wedding Catalogue</SelectItem>
-            <SelectItem value="recent">Recently Captured Memories</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      {/* <p className='pb-4'>Catalogues:</p> */}
 
-      <div className="columns-2 sm:columns-2 lg:columns-3 gap-4">
-        {images && images.length > 0 && images.map((image:any, index) => (
+      <div className="flex flex-wrap gap-2 mb-4">
+        {categories.map(({ label, value }) => (
+          <Button
+            key={value}
+            onClick={() => setCategory(value)}
+            variant={category === value ? "default" : "outline"}
+          >
+            {label}
+          </Button>
+        ))}
+      </div>
+      {loading && <p className="w-fit p-4">Fetching Catalogue<span className={`loader w-6 h-6 ml-4 border-2 border-t-orange-500`}></span></p>}
+      {!loading && <div className="columns-1 sm:columns-2 lg:columns-3 gap-2">
+        {images && images.length > 0 && images.map((image: any, index) => (
           <Dialog key={index}>
             <DialogTrigger asChild>
-              <div className="relative mb-4 break-inside-avoid">
-                <div className="relative w-full overflow-hidden rounded-md cursor-pointer">
+              <div className="relative mb-2 break-inside-avoid">
+                <div className="relative w-full overflow-hidden rounded-sm cursor-pointer">
                   <Image
                     src={image.secure_url}
                     alt={image.display_name}
-                    width={0} 
+                    width={0}
                     height={0}
-                    style={{ width: "100%", height: "auto" }} 
+                    style={{ width: "100%", height: "auto" }}
                     className="object-cover transition-transform hover:scale-105"
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     loading="lazy"
@@ -90,8 +93,8 @@ export default function Gallery() {
             <DialogContent className="max-w-[95vw] max-h-[95vh] p-0">
               <div className="relative w-full h-[90vh]">
                 <Image
-                  src={image.url}
-                  alt={image.alt}
+                  src={image.secure_url}
+                  alt={image.display_name}
                   fill
                   className="object-contain"
                   priority
@@ -100,7 +103,7 @@ export default function Gallery() {
                   variant="ghost"
                   size="icon"
                   className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm hover:bg-background/90"
-                  // onClick={() => document.querySelector('button[aria-label="Close"]')?.click()}
+                // onClick={() => document.querySelector('button[aria-label="Close"]')?.click()}
                 >
                   <X className="h-6 w-6" />
                 </Button>
@@ -108,7 +111,7 @@ export default function Gallery() {
             </DialogContent>
           </Dialog>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }

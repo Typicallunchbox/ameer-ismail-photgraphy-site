@@ -11,7 +11,7 @@ import {
 
 interface ImageCarouselProps {
   title: string;
-  images: { url: string; alt: string; }[];
+  images: { secure_url: string; display_name: string; }[];
 }
 
 export default function ImageCarousel({ title, images }: ImageCarouselProps) {
@@ -24,8 +24,8 @@ export default function ImageCarousel({ title, images }: ImageCarouselProps) {
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div className="aspect-[3/4] relative overflow-hidden rounded-lg">
                 <Image
-                  src={image.url}
-                  alt={image.alt}
+                  src={image.secure_url}
+                  alt={image.display_name}
                   fill
                   className="object-cover transition-transform hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

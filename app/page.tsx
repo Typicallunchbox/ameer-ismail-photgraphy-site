@@ -73,7 +73,7 @@ export default function Home() {
       <section 
         className="h-screen relative"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1604017011826-d3b4c23f8914')",
+          backgroundImage: "url('https://res.cloudinary.com/dt9bynx31/image/upload/v1739215534/home/hero.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

@@ -19,11 +19,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li>
+              {/* <li>
                 <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">
                   About Me
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/gallery" className="text-sm text-muted-foreground hover:text-foreground">
                   Gallery

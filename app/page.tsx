@@ -116,13 +116,13 @@ export default function Home() {
       <section id='getInTouch' className="py-20 sm:px-8 md:px-12 bg-muted/50">
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-bold px-6">Get in Touch</h2>
-          <p className="text-lg text-muted-foreground px-6">
+          <p className="text-md md:text-lg text-muted-foreground px-6">
             You've found your dream photographer. Let's capture the magic — reach out today to book your session!
           </p>
           
           <div className="bg-accent/50 p-4 rounded-lg text-sm space-y-2">
-            <p>Email: contact@ameerismail.com</p>
-            <p>Phone: +1 (555) 123-4567</p>
+            <p>Email: <b>contact@ameerismail.com</b></p>
+            <p>Phone: <b>+1 (555) 123-4567</b></p>
           </div>
           
           <div className="bg-white p-8 rounded-lg shadow-sm text-left">

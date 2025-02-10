@@ -26,12 +26,12 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
-            <Link 
+            {/* <Link 
               href="/about"
               className="text-sm font-medium hover:text-primary transition-colors"
             >
               About Me
-            </Link>
+            </Link> */}
             <Link 
               href="/gallery"
               className="text-sm font-medium hover:text-primary transition-colors"
@@ -50,13 +50,13 @@ export default function Navbar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[240px] sm:w-[300px]">
                 <nav className="flex flex-col gap-4 mt-8">
-                  <Link 
+                  {/* <Link 
                     href="/about"
                     className="text-lg font-medium hover:text-primary"
                     onClick={() => setIsOpen(false)}
                   >
                     About Me
-                  </Link>
+                  </Link> */}
                   <Link 
                     href="/gallery"
                     className="text-lg font-medium hover:text-primary"

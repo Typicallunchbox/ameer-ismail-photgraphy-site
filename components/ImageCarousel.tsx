@@ -16,8 +16,8 @@ interface ImageCarouselProps {
 
 export default function ImageCarousel({ title, images }: ImageCarouselProps) {
   return (
-    <div className="space-y-4">
-      <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
+    <div className="text-center md:text-left space-y-4">
+      <h2 className="text-lg md:text-2xl font-semibold tracking-tight">{title}</h2>
       <Carousel className="w-full">
         <CarouselContent>
           {images.map((image, index) => (

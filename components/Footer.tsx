@@ -35,8 +35,8 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Email: contact@ameerismail.com</li>
-              <li>Phone: +1 (555) 123-4567</li>
+              <li>Email: info@ameerismailphotography.com</li>
+              <li>Phone: 079 161 5761</li>
             </ul>
           </div>
         </div>

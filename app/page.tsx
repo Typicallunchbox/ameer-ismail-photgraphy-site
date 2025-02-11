@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import ImageCarousel from '@/components/ImageCarousel';
 import ContactForm from "../components/ContactForm";
 import Footer from '@/components/Footer';
+import { Mail, PhoneIcon } from 'lucide-react';
 
 // Sample image data - replace with your actual images
 // const recentImages = [
@@ -78,24 +79,24 @@ export default function Home() {
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-heroforeground/70" />
         
         <div className="absolute inset-0 flex flex-col justify-end pb-20 px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
           <div className="space-y-6">
-            <h4 className="text-lg font-medium text-primary">
+            <h4 className="text-lg font-medium text-secondary opacity-0 animate-bottom-fade-in [animation-delay:1.75s]">
               156 Happy Clients
             </h4>
             
-            <h1 className="text-3xl lg:text-5xl max-w-2xl">
-              Crafting <span className='font-bold'>unforgettable moments</span> through elegant, professional photography.
+            <h1 className="text-3xl lg:text-5xl max-w-2xl text-secondary opacity-0 animate-left-fade-in [animation-delay:.5s]">
+              Crafting <span className='font-bold text-primary'>unforgettable moments</span> through elegant, professional photography.
             </h1>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Button size="lg" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto opacity-0 animate-top-fade-in [animation-delay:1s]">
                 <a href='#getInTouch'>Get in Touch</a>
               </Button>
               
-              <Link href="/gallery" className="w-full sm:w-auto">
+              <Link href="/gallery" className="w-full sm:w-auto opacity-0 animate-top-fade-in [animation-delay:1.25s]">
                 <Button variant="outline" size="lg" className="w-full">
                   View Gallery
                 </Button>
@@ -121,8 +122,15 @@ export default function Home() {
           </p>
           
           <div className="bg-accent/50 p-4 rounded-lg text-sm space-y-2">
-            <p>Email: <b>contact@ameerismail.com</b></p>
-            <p>Phone: <b>+1 (555) 123-4567</b></p>
+            <div className="flex items-center space-x-2 justify-center">
+              <Mail className="h-6 w-6" />
+              <p><b>info@ameerismailphotography.com</b></p>
+            </div>
+            <div className="flex items-center space-x-2 justify-center">
+              <PhoneIcon className="h-6 w-6" />
+              <p><b>079 161 5761</b></p>
+            </div>
+            
           </div>
           
           <div className="bg-white p-8 rounded-lg shadow-sm text-left">

@@ -25,9 +25,8 @@ export default function Gallery() {
   const categories = [
     { label: "All", value: "all" },
     { label: "Fashion Catalogue", value: "fashion" },
-    { label: "Wedding Catalogue", value: "wedding" },
-    { label: "Recently Captured", value: "recent" },
-  ];
+    { label: "Wedding Catalogue", value: "wedding" }
+    ];
 
 
   useEffect(() => {
@@ -54,10 +53,10 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen pt-20 md:pt-40 px-2 sm:px-8 md:px-12 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">Gallery</h1>
+      <h1 className="text-4xl font-bold mb-8 opacity-0 animate-top-fade-in [animation-delay:.5s]">Gallery</h1>
       {/* <p className='pb-4'>Catalogues:</p> */}
 
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-wrap gap-2 mb-4 opacity-0 animate-top-fade-in [animation-delay:.8s]">
         {categories.map(({ label, value }) => (
           <Button
             key={value}
@@ -81,7 +80,7 @@ export default function Gallery() {
                     width={0}
                     height={0}
                     style={{ width: "100%", height: "auto" }}
-                    className="object-cover transition-transform hover:scale-105"
+                    className={`object-cover transition-transform hover:scale-105 ${index % 2 === 0 ? `opacity-0 animate-top-fade-in [animation-delay:1${index}.5s]`: `opacity-0 animate-left-fade-in [animation-delay:1${index*2}.5s]`}`}
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     loading="lazy"
                     placeholder="blur"

@@ -22,6 +22,7 @@ const config: Config = {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        heroforeground: '#464646',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -31,7 +32,7 @@ const config: Config = {
           foreground: 'hsl(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
+          DEFAULT: '#90CEE4',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
@@ -62,6 +63,22 @@ const config: Config = {
         },
       },
       keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        leftFadeIn: {
+          '0%': { opacity: '0', transform: 'translateX(-15px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' }
+        },
+        topFadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-15px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        bottomFadeIn: {
+          '0%':{ opacity: '0', transform: 'translateY(15px)' },
+          '100%': { opacity: '1', transform:' translateY(0)' }
+        },
         'accordion-down': {
           from: {
             height: '0',
@@ -82,6 +99,10 @@ const config: Config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'wiggle': 'wiggle 0.5s ease-out infinite',
+        'top-fade-in': 'topFadeIn 0.5s ease-out forwards',
+        'bottom-fade-in': 'bottomFadeIn 0.5s ease-out forwards',
+        'left-fade-in': 'leftFadeIn 0.5s ease-out forwards',
       },
     },
   },

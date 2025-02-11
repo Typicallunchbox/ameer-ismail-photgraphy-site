@@ -68,7 +68,7 @@ export default function Gallery() {
         ))}
       </div>
       {loading && <p className="w-fit p-4">Fetching Catalogue<span className={`loader w-6 h-6 ml-4 border-2 border-t-orange-500`}></span></p>}
-      {!loading && <div className="columns-1 sm:columns-2 lg:columns-3 gap-2">
+      {!loading && <div className="columns-2 sm:columns-2 lg:columns-3 gap-2">
         {images && images.length > 0 && images.map((image: any, index) => (
           <Dialog key={index}>
             <DialogTrigger asChild>

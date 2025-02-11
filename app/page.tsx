@@ -74,7 +74,7 @@ export default function Home() {
       <section 
         className="h-screen relative"
         style={{
-          backgroundImage: "url('https://res.cloudinary.com/dt9bynx31/image/upload/v1739215534/home/hero.webp')",
+          backgroundImage: "url('https://res.cloudinary.com/dt9bynx31/image/upload/v1739296390/home/hero.webp')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

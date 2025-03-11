@@ -64,6 +64,13 @@ export default function Navbar() {
                   >
                     Gallery
                   </Link>
+                  <Link 
+                    href="#getInTouch"
+                    className="text-lg font-medium hover:text-primary"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Get in touch
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>

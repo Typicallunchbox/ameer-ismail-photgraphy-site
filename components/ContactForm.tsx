@@ -7,6 +7,7 @@ import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Form,
@@ -29,7 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -42,6 +43,8 @@ const formSchema = z.object({
 export default function ContactForm() {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,11 +57,16 @@ export default function ContactForm() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
     setStatus("");
+
+    if (!recaptchaToken) {
+      alert("Please verify the reCAPTCHA.");
+      return;
+    }
     
     const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({emailData: values, recaptchaToken: recaptchaToken }),
     });
 
     const result = await response.json();    
@@ -181,7 +189,11 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-
+        <ReCAPTCHA
+          sitekey="6LcZe_EqAAAAAPH3VxF0v-ZudKQIbWxUSVoCydU8"
+          ref={recaptchaRef}
+          onChange={(token:any) => setRecaptchaToken(token)}
+        />
         <Button disabled={loading} type="submit" className="w-full">Submit<span className={`${loading ? 'loader' : ''} w-6 h-6 ml-4`}></span></Button>
         
         <p className={`${status.startsWith('Error') ? 'text-red-500': 'text-emerald-500'} font-bold`}>{status}</p>

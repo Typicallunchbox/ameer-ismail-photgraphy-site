@@ -81,7 +81,7 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-heroforeground/70" />
         
-        <div className="absolute inset-0 flex flex-col justify-end pb-20 px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
+        <div className="absolute inset-0 flex flex-col justify-end pb-[15rem] px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
           <div className="space-y-6">
             <h4 className="text-lg font-medium text-secondary opacity-0 animate-bottom-fade-in [animation-delay:1.75s]">
               156 Happy Clients

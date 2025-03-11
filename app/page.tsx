@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import ImageCarousel from '@/components/ImageCarousel';
 import ContactForm from "../components/ContactForm";
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 import { Mail, PhoneIcon } from 'lucide-react';
 
 // Sample image data - replace with your actual images
@@ -79,9 +80,10 @@ export default function Home() {
           backgroundPosition: 'center',
         }}
       >
+       
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-heroforeground/70" />
         
-        <div className="absolute inset-0 flex flex-col justify-end pb-[15rem] px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
+        <div className="absolute inset-0 flex flex-col justify-end pb-20 md:pb-[15rem] px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
           <div className="space-y-6">
             <h4 className="text-lg font-medium text-secondary opacity-0 animate-bottom-fade-in [animation-delay:1.75s]">
               156 Happy Clients
@@ -101,6 +103,28 @@ export default function Home() {
                   View Gallery
                 </Button>
               </Link>
+            </div>
+            <div className='flex items-center justify-between md:justify-normal md:gap-3'>
+              <div className="w-[40px] h-[40px] bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 p-1 rounded-full">
+                <a target="_blank" href="https://www.instagram.com/ameer.ismail.wedding/" rel="noopener noreferrer">
+                  <Image
+                    src={'/icons/instagram.svg'}
+                    alt={'instagram-icon'}
+                    width={25}
+                    height={25}
+                    className="invert mix-blend-screen mx-auto my-1"
+                  />
+                </a>
+              </div>
+              <a  target="_blank" href="https://www.facebook.com/ameer.ismail.photo/" rel="noopener noreferrer">
+                <Image
+                  src={'/icons/facebook.svg'}
+                  alt={'facebook-icon'}
+                  width={35}
+                  height={35}
+                  className='invert'
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -129,6 +153,29 @@ export default function Home() {
             <div className="flex items-center space-x-2 justify-center">
               <PhoneIcon className="h-6 w-6" />
               <p><b>079 161 5761</b></p>
+            </div>
+
+            <div className='flex items-center justify-center md:gap-3 pt-10'>
+              <h3 className="text-lg">Social Links:</h3>
+              <div className="w-[40px] h-[40px] bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 p-1 rounded-full">
+                <a target="_blank" href="https://www.instagram.com/ameer.ismail.wedding/" rel="noopener noreferrer">
+                  <Image
+                    src={'/icons/instagram.svg'}
+                    alt={'instagram-icon'}
+                    width={25}
+                    height={25}
+                    className="invert mix-blend-screen mx-auto my-1"
+                  />
+                </a>
+              </div>
+              <a  target="_blank" href="https://www.facebook.com/ameer.ismail.photo/" rel="noopener noreferrer">
+                <Image
+                  src={'/icons/facebook.svg'}
+                  alt={'facebook-icon'}
+                  width={35}
+                  height={35}
+                />
+              </a>
             </div>
             
           </div>

@@ -118,7 +118,7 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-            <div className='flex items-center justify-between md:justify-normal md:gap-3'>
+            <div className='flex items-center gap-3'>
               <div className="w-[40px] h-[40px] bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 p-1 rounded-full">
                 <a target="_blank" href="https://www.instagram.com/ameer.ismail.wedding/" rel="noopener noreferrer">
                   <Image

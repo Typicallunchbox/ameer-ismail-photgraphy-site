@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import Head from "next/head";
 
 
 export default function Gallery() {
@@ -52,7 +53,27 @@ export default function Gallery() {
   // if (loading) return <p>Loading images...</p>;
 
   return (
-    <div className="min-h-screen pt-20 md:pt-40 px-2 sm:px-8 md:px-12 max-w-7xl mx-auto">
+    <>
+    <Head>
+        <title>Photography Gallery | Ameer Ismail Photography</title>
+        <meta
+          name="description"
+          content="Explore the stunning gallery of wedding and fashion photography by Ameer Ismail. Capturing unforgettable moments with creativity and passion."
+        />
+        <meta
+          name="keywords"
+          content="wedding photography, fashion photography, wedding gallery, photography gallery, Ameer Ismail, wedding portraits, fashion editorial, photographer portfolio"
+        />
+        <meta property="og:title" content="Photography Gallery | Ameer Ismail Photography" />
+        <meta
+          property="og:description"
+          content="Explore the stunning gallery of wedding and fashion photography by Ameer Ismail. Capturing unforgettable moments with creativity and passion."
+        />
+        {/* <meta property="og:image" content="https://ameerismail.com/path/to/gallery-image.jpg" /> */}
+        <meta property="og:url" content="https://ameerismail.com/gallery/" />
+        <link rel="canonical" href="https://ameerismail.com/gallery/" />
+    </Head>
+    <main className="min-h-screen pt-20 md:pt-40 px-2 sm:px-8 md:px-12 max-w-7xl mx-auto">
       <h1 className="text-4xl font-bold mb-8 opacity-0 animate-top-fade-in [animation-delay:.5s]">Gallery</h1>
       {/* <p className='pb-4'>Catalogues:</p> */}
 
@@ -111,6 +132,7 @@ export default function Gallery() {
           </Dialog>
         ))}
       </div>}
-    </div>
+    </main>
+    </>
   );
 }

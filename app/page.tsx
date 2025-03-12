@@ -7,6 +7,7 @@ import ImageCarousel from '@/components/ImageCarousel';
 import ContactForm from "../components/ContactForm";
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import Head from "next/head";
 import { Mail, PhoneIcon } from 'lucide-react';
 
 // Sample image data - replace with your actual images
@@ -70,6 +71,19 @@ export default function Home() {
     
 
   return (
+    <>
+    <Head>
+      <title>Professional Wedding Photographer in Durban - Pre Wedding Photography</title>
+      <meta
+        name="description"
+        content="Durban-based photographer Ameer Ismail offers exceptional wedding and high-end fashion photography services across South Africa's major cities."
+      />
+      <meta
+        name="keywords"
+        content="wedding photography, fashion photography, professional photographer, Ameer Ismail, Durban photographer, wedding photoshoot, fashion editorial, bridal portraits"
+      />
+      <link rel="canonical" href="https://ameerismail.com" />
+    </Head>
     <main className="min-h-screen">
       {/* Hero Section */}
       <section 
@@ -188,5 +202,6 @@ export default function Home() {
 
       <Footer />
     </main>
+    </>
   );
 }

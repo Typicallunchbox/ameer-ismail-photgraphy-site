@@ -8,6 +8,20 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Ameer Ismail Photography',
   description: 'Professional Photography Portfolio',
+  keywords: [
+    'Ameer Ismail',
+    'durban wedding photography',
+    'wedding photoshoot',
+    'wedding photography',
+    'fashion photography',
+    'creative photography',
+    'photographer portfolio',
+    'wedding portraits',
+    'fashion editorial photography',
+    'bridal photoshoot',
+    'fashion model photography',
+    'destination wedding photography',
+  ]
 };
 
 export default function RootLayout({

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
+import { Menu, GalleryVerticalEnd } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -25,20 +25,18 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {/* <Link 
-              href="/about"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              About Me
-            </Link> */}
-            <Link 
-              href="/gallery"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
+          <Link href="/gallery">
+            <div className='bg-blue-400 px-5 py-2 text-white rounded-md items-center hidden md:flex md:gap-2 hover:bg-blue-300'>
+             <GalleryVerticalEnd className="h-4 w-4" />
+
+              
+            <p className="text-sm font-medium transition-colors ">
+            
               Gallery
+              </p> 
+            </div>
             </Link>
-          </div>
+
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -50,13 +48,6 @@ export default function Navbar() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[240px] sm:w-[300px]">
                 <nav className="flex flex-col gap-4 mt-8">
-                  {/* <Link 
-                    href="/about"
-                    className="text-lg font-medium hover:text-primary"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    About Me
-                  </Link> */}
                   <Link 
                     href="/gallery"
                     className="text-lg font-medium hover:text-primary"

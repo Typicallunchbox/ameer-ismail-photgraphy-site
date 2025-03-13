@@ -19,13 +19,12 @@ import { Button } from "@/components/ui/button";
 
 
 export default function Gallery() {
-  const [category, setCategory] = useState<string>("all");
+  const [category, setCategory] = useState<string>("wedding");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const categories = [
-    { label: "All", value: "all" },
-    { label: "Fashion Catalogue", value: "fashion" },
-    { label: "Wedding Catalogue", value: "wedding" }
+    { label: "Wedding Catalogue", value: "wedding" },
+    { label: "Fashion Catalogue", value: "fashion" }
     ];
 
 

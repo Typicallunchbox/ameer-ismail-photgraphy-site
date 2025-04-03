@@ -122,7 +122,7 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-2 justify-center pt-2">
               <PhoneIcon className="h-6 w-6" />
-              <a className='font-bold underline'href="tel:0791611234">079 161 1234</a>
+              <a className='font-bold underline'href="tel:0791615761">079 161 5761</a>
             </div>
 
             <div className='flex items-center justify-center md:gap-3 pt-10'>

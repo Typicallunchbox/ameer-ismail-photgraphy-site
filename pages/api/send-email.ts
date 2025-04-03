@@ -7,9 +7,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const { emailData, recaptchaToken } = req.body;
-    const { fullName, email, interest, date, location } = emailData;
+    const { fullName, number, interest, date, location } = emailData;
 
-    if (!fullName || !email || !interest || !date || !location) {
+    if (!fullName || !number || !interest || !date || !location) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -45,11 +45,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             subject: `New Contact Form Submission from ${fullName}`,
             text: "TEST",
             html: `<p><strong>Name:</strong> ${fullName}</p>
-                   <p><strong>Email:</strong> ${email}</p>
+                   <p><strong>Email:</strong> ${number}</p>
                    <p><strong>Interest:</strong> ${interest}</p>
                    <p><strong>Date:</strong> ${date}</p>
                    <p><strong>Location:</strong> ${location}</p>`,
-            replyTo: email, 
+            replyTo: number, 
         });
 
         return res.status(200).json({ message: 'Email sent successfully' });

@@ -6,26 +6,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const { emailData, recaptchaToken } = req.body;
+    const { emailData } = req.body;
     const { fullName, number, interest, date, location } = emailData;
 
     if (!fullName || !number || !interest || !date || !location) {
         return res.status(400).json({ message: 'All fields are required' });
-    }
-
-    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-
-    if (!recaptchaToken) {
-        return res.status(400).json({ message: "Missing reCAPTCHA token" });
-    }
-
-    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`;
-
-    const verifyResponse = await fetch(verifyUrl, { method: "POST" });
-    const verifyData = await verifyResponse.json();
-
-    if (!verifyData.success) {
-        return res.status(400).json({ message: "reCAPTCHA verification failed" });
     }
 
     const transporter = nodemailer.createTransport({

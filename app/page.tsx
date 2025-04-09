@@ -59,7 +59,7 @@ export default function Home() {
         <div className="absolute inset-0 flex flex-col justify-end bottom-10 md:bottom-20 px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
           <div className="space-y-6">            
             <h1 className="text-3xl lg:text-5xl max-w-2xl text-secondary opacity-0 animate-left-fade-in [animation-delay:.5s]">
-              Crafting <span className='font-bold text-primary'>unforgettable moments</span> through elegant, professional photography.
+              Crafting <span className='font-bold text-primary'>Unforgettable Moments</span> Through Elegant, Professional Photography.
             </h1>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
@@ -111,9 +111,10 @@ export default function Home() {
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-bold px-6">Get in Touch</h2>
           <p className="text-md md:text-lg text-muted-foreground px-6">
-            You've found your dream photographer. Let's capture the magic — reach out today to book your session!
-          </p>
-          
+            You've Found Your Dream Photographer. Let's Capture The Magic.
+            <br/>
+            Reach Out Today To Book Your Session!
+          </p>          
           <div className="bg-accent/50 p-4 rounded-lg text-sm space-y-2">
             <div className="flex items-center space-x-2 justify-center">
               <Mail className="h-6 w-6" />
@@ -125,7 +126,7 @@ export default function Home() {
               <a className='font-bold underline'href="tel:0791615761">079 161 5761</a>
             </div>
 
-            <div className='flex items-center justify-center md:gap-3 pt-10'>
+            <div className='flex items-center justify-center gap-3 pt-10'>
               <h3 className="text-lg">Social Links:</h3>
               <div className="w-[40px] h-[40px] bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 p-1 rounded-full">
                 <a target="_blank" href="https://www.instagram.com/ameer.ismail.wedding/" rel="noopener noreferrer">

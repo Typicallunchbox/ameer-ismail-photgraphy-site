@@ -12,7 +12,7 @@ export default function Footer() {
               <span className="text-xl font-semibold">Ameer Ismail</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Capturing life's precious moments with elegance and style.
+              Capturing Life's Precious Moments With Elegance And Style.
             </p>
           </div>
           
@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
         
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Ameer Ismail Photography. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Ameer Ismail Photography. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

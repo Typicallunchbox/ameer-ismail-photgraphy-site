@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, GalleryVerticalEnd } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import {
   Sheet,
   SheetContent,
@@ -20,7 +21,13 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-1 flex justify-start">
             <Link href="/" className="text-xl font-semibold">
-              Ameer Ismail
+              <Image
+                src={'/icons/ameer_ismail.png'}
+                alt={'logo-icon'}
+                width={200}
+                height={200}
+                className="invert"
+              />
             </Link>
           </div>
 

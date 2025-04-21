@@ -59,7 +59,7 @@ export default function Home() {
         <div className="absolute inset-0 flex flex-col justify-end bottom-10 md:bottom-20 px-6 sm:px-8 md:px-12 max-w-7xl mx-auto">
           <div className="space-y-6">            
             <h1 className="text-3xl lg:text-5xl max-w-2xl text-secondary opacity-0 animate-left-fade-in [animation-delay:.5s]">
-              Crafting <span className='font-bold text-primary'>Unforgettable Moments</span> Through Elegant, Professional Photography.
+              Capturing <span className='font-bold text-primary'>Unforgettable Moments</span> Through Elegant, Professional Photography.
             </h1>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-6">

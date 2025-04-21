@@ -33,6 +33,7 @@ import { useState, useRef } from "react";
 
 const formSchema = z.object({
   fullName:  z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be at most 50 characters").regex(/^[a-zA-Z\s\-']+$/, "Invalid name format"),
+  email: z.string().email("Invalid email address"),
   number: z.string().min(10, "Mobile number must be at least 10 digits").max(15, "Mobile number must be at most 15 digits").regex(/^\+?\d{10,15}$/, "Invalid mobile number format"),
   interest: z.string().regex(/^[a-zA-Z\s\-']+$/, "Invalid interest"),
   date: z.date(),
@@ -46,6 +47,7 @@ export default function ContactForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
+      email:"",
       number: "",
       location: "",
     },
@@ -90,6 +92,20 @@ export default function ContactForm() {
 
         <FormField
           control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email Address</FormLabel>
+              <FormControl>
+                <Input placeholder="johndoe@gmail.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="number"
           render={({ field }) => (
             <FormItem>
@@ -101,7 +117,7 @@ export default function ContactForm() {
             </FormItem>
           )}
         />
-
+        
         <FormField
           control={form.control}
           name="interest"
@@ -117,6 +133,7 @@ export default function ContactForm() {
                 <SelectContent>
                   <SelectItem value="wedding photography">Wedding Photography</SelectItem>
                   <SelectItem value="fashion photography">Fashion Photography</SelectItem>
+                  <SelectItem value="modest ware photography">Modest Ware Photography</SelectItem>
                   <SelectItem value="event photography">Event Photography</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>

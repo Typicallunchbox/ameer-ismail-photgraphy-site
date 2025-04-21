@@ -24,7 +24,8 @@ export default function Gallery() {
   const [loading, setLoading] = useState(true);
   const categories = [
     { label: "Wedding Catalogue", value: "wedding" },
-    { label: "Fashion Catalogue", value: "fashion" }
+    { label: "Fashion Catalogue", value: "fashion" },
+    { label: "Modest Wear Catalogue", value: "modest" }
     ];
 
 

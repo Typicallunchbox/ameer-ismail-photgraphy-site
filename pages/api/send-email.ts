@@ -7,9 +7,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const { emailData } = req.body;
-    const { fullName, number, interest, date, location } = emailData;
+    const { fullName, number, email, interest, date, location } = emailData;
 
-    if (!fullName || !number || !interest || !date || !location) {
+    if (!fullName || !number || !email || !interest || !date || !location) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -30,10 +30,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             subject: `New Contact Form Submission from ${fullName}`,
             text: "TEST",
             html: `<p><strong>Name:</strong> ${fullName}</p>
-                   <p><strong>Email:</strong> ${number}</p>
+                   <p><strong>Number:</strong> ${number}</p>
+                   <p><strong>Email:</strong> ${email}</p>
                    <p><strong>Interest:</strong> ${interest}</p>
                    <p><strong>Date:</strong> ${date}</p>
-                   <p><strong>Location:</strong> ${location}</p>`,
+                   <p><strong>Location:</strong> ${location}</p>
+                   <p><a href="mailto:${email}">Send email</a></p>`,
             replyTo: number, 
         });
 

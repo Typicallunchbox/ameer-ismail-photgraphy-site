@@ -28,6 +28,26 @@ const nextConfig = {
         destination: "/#getInTouch",
         permanent: true,
       },
+      {
+        source: "/contact/",
+        destination: "/#getInTouch",
+        permanent: true,
+      },
+      {
+        source: "/fashion-model-photographers-durban/",
+        destination: "/fashion-gallery/",
+        permanent: true,
+      },
+      {
+        source: "/services-page/",
+        destination: "/#getInTouch",
+        permanent: true,
+      },
+      {
+        source: "/envira/weddings/",
+        destination: "/wedding-gallery/",
+        permanent: true,
+      },
     ];
   },
   eslint: {

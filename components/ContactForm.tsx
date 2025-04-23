@@ -133,7 +133,7 @@ export default function ContactForm() {
                 <SelectContent>
                   <SelectItem value="wedding photography">Wedding Photography</SelectItem>
                   <SelectItem value="fashion photography">Fashion Photography</SelectItem>
-                  <SelectItem value="modest ware photography">Modest Ware Photography</SelectItem>
+                  <SelectItem value="modest wear photography">Modest Wear Photography</SelectItem>
                   <SelectItem value="event photography">Event Photography</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
